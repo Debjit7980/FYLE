@@ -61,8 +61,8 @@ body{
     
 }
 .hero-img img{
-    width:387px;
-    height:537px;
+    width:420px;
+    height:637px;
 }
 
 /* =============POPUP FORM DESIGN======================== */
@@ -205,25 +205,22 @@ form button {
     font-size: 16px;
 }
 .service-carousal{
-    
+    margin-top:2rem;
+    height: auto;
     display: flex;
     overflow-x: scroll;
-    gap:4rem;
+    gap:5rem;
     position: relative;
 }
 .service-carousal::-webkit-scrollbar{
     display: none;
 }
-.service-carousal img{
-    width: 280px;
-    height: 400px;
-    position: relative;
-    z-index: 1;
+.service-carousal>.image-container img{
+    width: 370px;
+    height: 526px; 
 }
 .image-container {
     position: relative;
-    width: 280px;
-    height: 400px;  
 }
 .service-carousal .hover-overlay {
     position: absolute;
@@ -244,7 +241,7 @@ form button {
 .hover-overlay {
     display: flex;
     flex-direction: column;
-    gap:10px;
+    gap:18px;
     align-items: center;
     justify-content: center;
     color: white;
@@ -259,6 +256,7 @@ form button {
     font-family: "Poppins","Regular";
 }
 .hover-overlay a {
+    margin-top: 2rem;
     background-color: white;
     width: 155px;
     display: flex;
@@ -301,6 +299,7 @@ form button {
     height: 6px;
     background-color: black;
 }
+
 .pagination-dot.active>div{
     background-color: #FF3147 ;
 }

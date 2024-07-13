@@ -1,3 +1,4 @@
+//Popup form in Hero section
 document.addEventListener("DOMContentLoaded", () => {
     const contactBtn = document.getElementById("contactBtn");
     const popupForm = document.getElementById("popupForm");
@@ -17,47 +18,35 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-const carousal = document.querySelector('.service-carousal');
-const dots = document.querySelectorAll('.pagination-dot');
-const images = carousal.querySelectorAll('img');
-const totalImages = images.length;
+// Carousal Of Images
+
+const container = document.querySelector('.service-carousal');
+const images = document.querySelectorAll('.image-container');
+const paginationDots = document.querySelectorAll('.pagination-dot');
+
+const containerWidth = container.offsetWidth;
+const imageWidth = images[0].offsetWidth;
+const numImages = images.length;
+const numDots = paginationDots.length;
 
 let currentIndex = 0;
 
-function updateDots(index) {
-    dots.forEach(dot => dot.classList.remove('active'));
-    dots[index].classList.add('active');
-}
-
-function scrollToIndex(index) {
-    const gap = parseInt(getComputedStyle(carousal).gap * 10);
-    const offset = index * (images[0].clientWidth + gap);
-    carousal.scrollTo({
-        left: offset,
-        behavior: 'smooth'
-    });
-}
-
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        scrollToIndex(index);
-        updateDots(index);
+container.addEventListener('scroll', () => {
+    const scrollPosition = container.scrollLeft;
+    const index = Math.floor(scrollPosition / imageWidth*2);
+    
+    if (currentIndex !== index) {
         currentIndex = index;
-    });
-});
-
-carousal.addEventListener('scroll', () => {
-    const gap = parseInt(getComputedStyle(carousal).gap);
-    const newIndex = Math.round(carousal.scrollLeft / (images[0].clientWidth + gap));
-    if (newIndex !== currentIndex) {
-        currentIndex = newIndex;
-        updateDots(currentIndex);
+        updatePaginationDots();
     }
 });
 
-// Initialize the first dot as active
-updateDots(0);
-// Add this to your script.js
+function updatePaginationDots() {
+    paginationDots.forEach(dot => dot.classList.remove('active'));
+    paginationDots[currentIndex % numDots].classList.add('active');
+}
+updatePaginationDots();
+
 
 // Project Section 
 // Select all child divs of project-desc
